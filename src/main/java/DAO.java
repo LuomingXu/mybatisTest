@@ -1,10 +1,12 @@
 /*
  * Copyright (c) 2018
- * Project Name : test
+ * Author : LuomingXu
+ * Project Name : forJavaCurriculumDesign_Mybatis
  * File Name : DAO.java
- * Date : 18-6-1 下午4:46
- * Author : Luoming Xu
+ * CreateTime: 2018/06/28 14:53:31
+ * LastModifiedDate : 18-6-28 下午2:52
  */
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -22,17 +24,18 @@ public class DAO<T>
 
     private static void printNameLine(Exception e)
     {
-        System.err.println(Thread.currentThread().getClass()+
-                "--"+Thread.currentThread().getStackTrace()[1].getMethodName()+
-        "--"+Thread.currentThread().getStackTrace()[1].getLineNumber());
+        System.err.println(Thread.currentThread().getClass() +
+                "--" + Thread.currentThread().getStackTrace()[1].getMethodName() +
+                "--" + Thread.currentThread().getStackTrace()[1].getLineNumber());
         e.printStackTrace();
     }
 
     /**
      * get class Field[] if className == null
      * return String variable Field[]
-     * @param className     the class which you want get its variable
-     * @return              class's Filed[]
+     *
+     * @param className the class which you want get its variable
+     * @return class's Filed[]
      */
     private static Field[] getVariable(String className)
     {
@@ -42,7 +45,7 @@ public class DAO<T>
             Class c = obj.getClass();
             return c.getDeclaredFields();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             try
             {
@@ -50,7 +53,7 @@ public class DAO<T>
                 Class c = obj.getClass();
                 return c.getDeclaredFields();
             }
-            catch(Exception ee)
+            catch (Exception ee)
             {
                 printNameLine(ee);
             }
@@ -61,18 +64,19 @@ public class DAO<T>
 
     /**
      * connect DB get model
-     * @param mapperID      id in mapper.xml
-     * @param varIndex      class variable index
-     * @param param         generics model which you could get data for you select statement
-     * @param className     generics's class full name
-     * @param <T>           generics model name
-     * @return              model from DB
+     *
+     * @param mapperID  id in mapper.xml
+     * @param varIndex  class variable index
+     * @param param     generics model which you could get data for you select statement
+     * @param className generics's class full name
+     * @param <T>       generics model name
+     * @return model from DB
      */
     public static <T> List<T> getModel(String mapperID, Integer varIndex, T param, String className)
     {
-        List<T> models=new ArrayList<T>();
+        List<T> models = new ArrayList<T>();
         T model;
-        Field[] fields=getVariable(className);
+        Field[] fields = getVariable(className);
 
         //remove access check
         for (Field item : fields)
@@ -80,8 +84,8 @@ public class DAO<T>
 
         try
         {
-            InputStream inputStream =Resources.getResourceAsStream(mybatisPath);
-            SqlSessionFactory ssf =new SqlSessionFactoryBuilder().build(inputStream);
+            InputStream inputStream = Resources.getResourceAsStream(mybatisPath);
+            SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(inputStream);
             SqlSession session = ssf.openSession();
             if (varIndex == null)
             {
@@ -90,8 +94,8 @@ public class DAO<T>
             }
             else
             {
-                int ID=Integer.parseInt(fields[varIndex].get(param).toString());
-                model=session.selectOne(mapperID,ID);
+                int ID = Integer.parseInt(fields[varIndex].get(param).toString());
+                model = session.selectOne(mapperID, ID);
                 models.add(model);
             }
             return models;
@@ -100,7 +104,7 @@ public class DAO<T>
         {
             printNameLine(ee);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             printNameLine(e);
         }

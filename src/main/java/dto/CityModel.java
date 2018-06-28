@@ -1,11 +1,21 @@
 package dto;
 
+/*
+ * Copyright (c) 2018
+ * Author : LuomingXu
+ * Project Name : forJavaCurriculumDesign_Mybatis
+ * File Name : CityModel.java
+ * CreateTime: 2018/06/28 14:53:38
+ * LastModifiedDate : 18-6-28 下午2:52
+ */
+
 import java.io.Serializable;
 
 /**
- * @author 
+ * @author
  */
-public class CityModel implements Serializable {
+public class CityModel implements Serializable
+{
     private Integer id;
 
     private String name;
@@ -18,67 +28,82 @@ public class CityModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Integer getId()
+    {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
         this.id = id;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public String getCountrycode() {
+    public String getCountrycode()
+    {
         return countrycode;
     }
 
-    public void setCountrycode(String countrycode) {
+    public void setCountrycode(String countrycode)
+    {
         this.countrycode = countrycode;
     }
 
-    public String getDistrict() {
+    public String getDistrict()
+    {
         return district;
     }
 
-    public void setDistrict(String district) {
+    public void setDistrict(String district)
+    {
         this.district = district;
     }
 
-    public Integer getPopulation() {
+    public Integer getPopulation()
+    {
         return population;
     }
 
-    public void setPopulation(Integer population) {
+    public void setPopulation(Integer population)
+    {
         this.population = population;
     }
 
     @Override
-    public boolean equals(Object that) {
-        if (this == that) {
+    public boolean equals(Object that)
+    {
+        if (this == that)
+        {
             return true;
         }
-        if (that == null) {
+        if (that == null)
+        {
             return false;
         }
-        if (getClass() != that.getClass()) {
+        if (getClass() != that.getClass())
+        {
             return false;
         }
         CityModel other = (CityModel) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getCountrycode() == null ? other.getCountrycode() == null : this.getCountrycode().equals(other.getCountrycode()))
-            && (this.getDistrict() == null ? other.getDistrict() == null : this.getDistrict().equals(other.getDistrict()))
-            && (this.getPopulation() == null ? other.getPopulation() == null : this.getPopulation().equals(other.getPopulation()));
+                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+                && (this.getCountrycode() == null ? other.getCountrycode() == null : this.getCountrycode().equals(other.getCountrycode()))
+                && (this.getDistrict() == null ? other.getDistrict() == null : this.getDistrict().equals(other.getDistrict()))
+                && (this.getPopulation() == null ? other.getPopulation() == null : this.getPopulation().equals(other.getPopulation()));
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
@@ -90,7 +115,8 @@ public class CityModel implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

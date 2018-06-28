@@ -38,3 +38,6 @@ buildNumber.properties
 
 *mybatis-config.xml
 *target
+/.idea/
+.idea/.name
+lib/
